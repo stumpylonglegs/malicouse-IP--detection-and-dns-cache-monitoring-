@@ -1,9 +1,22 @@
 import os 
 import subprocess
 import re
+import requests
+from time import sleep 
 
 
-def get_dns_cache_entriess():
+
+
+
+headers = {
+    "accept": "application/json",
+    "x-apikey": "17f5340e184039cec38f8dc3f729f8eef6ad12bfa597696257a438f68a661c5a"
+}
+
+
+
+
+def get_dns_cache_entriess(headers):
 
     lookup = subprocess.run(['ipconfig', '/displaydns'], capture_output=True, text=True, shell=True)
     reg = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})') 
@@ -15,14 +28,24 @@ def get_dns_cache_entriess():
         if ip not in removed_dublicate:
             removed_dublicate.append(ip)
 
-
-
     for ip in removed_dublicate:
-        print(ip)
+        url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
+
+        print(url)
+        
+        response = requests.get(url, headers = headers)
+        print(response.text)
+        sleep(20)
+
+
+
+
+
     
     
+    
 
 
 
 
-get_dns_cache_entriess()
+get_dns_cache_entriess(headers)
