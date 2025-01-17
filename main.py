@@ -33,8 +33,22 @@ def get_dns_cache_entriess(headers):
 
         print(url)
         
+        
+        
+
         response = requests.get(url, headers = headers)
-        print(response.text)
+        text = response.text
+        regexp = re.compile(r'"malicious":\s*(\d+)')
+        match = regexp.search(text)
+        if match:
+            malicious_count = int(match.group(1))
+            print(f"Malicious count: {malicious_count}")
+        
+        regexp = re.compile(r'"suspicious":\s*(\d+)')
+        match = regexp.search(text)
+        if match:
+            suspicious_count = int(match.group(1))
+            print(f"Malicious count: {suspicious_count}")
         sleep(20)
 
 
