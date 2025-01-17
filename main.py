@@ -49,6 +49,10 @@ def get_dns_cache_entriess(headers):
         if match:
             suspicious_count = int(match.group(1))
             print(f"Malicious count: {suspicious_count}")
+
+        if suspicious_count > 0 or malicious_count > 0:
+            example = 1
+            #code to send to email or msg if ip is found to be maliciouse or suspisciouse
         sleep(20)
 
 
