@@ -10,7 +10,7 @@ from time import sleep
 
 headers = {
     "accept": "application/json",
-    "x-apikey": "17f5340e184039cec38f8dc3f729f8eef6ad12bfa597696257a438f68a661c5a"
+    "x-apikey": "<apikey>"
 }
 
 
